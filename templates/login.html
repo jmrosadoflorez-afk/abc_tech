@@ -1,0 +1,15 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card small">
+  <h2>Iniciar sesión</h2>
+  <form method="post">
+    <label>Correo</label>
+    <input type="email" name="email" required>
+    <label>Contraseña</label>
+    <input type="password" name="password" required>
+    <button type="submit">Entrar</button>
+  </form>
+  <p><a href="{{ url_for('register') }}">Registrarme</a> · <a href="{{ url_for('recuperar') }}">Recuperar contraseña</a></p>
+</div>
+{% endblock %}

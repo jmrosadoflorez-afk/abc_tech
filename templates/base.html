@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABC Tech</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>ABC Tech Supplies</h1>
+    {% if session.get("user_id") %}
+    <nav>
+      <a href="{{ url_for('dashboard') }}">Inicio</a>
+      <a href="{{ url_for('clientes_list') }}">Clientes</a>
+      <a href="{{ url_for('proveedores_list') }}">Proveedores</a>
+      <a href="{{ url_for('productos_list') }}">Productos</a>
+      <a href="{{ url_for('servicios_list') }}">Servicios</a>
+      <a href="{{ url_for('logout') }}">Salir</a>
+    </nav>
+    {% endif %}
+  </header>
+  <main>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">{{ messages[0] }}</div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    <small>Proyecto académico — ABC Tech</small>
+  </footer>
+</body>
+</html>

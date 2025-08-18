@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card small">
+  <h2>{{ "Editar" if data else "Nuevo" }} cliente</h2>
+  <form method="post">
+    <label>Nombre</label>
+    <input name="nombre" value="{{ data.nombre if data }} " required>
+    <label>Correo</label>
+    <input name="correo" value="{{ data.correo if data }}">
+    <label>Teléfono</label>
+    <input name="telefono" value="{{ data.telefono if data }}">
+    <label>Dirección</label>
+    <input name="direccion" value="{{ data.direccion if data }}">
+    <label>Historial</label>
+    <textarea name="historial_compras">{{ data.historial_compras if data }}</textarea>
+    <button type="submit">Guardar</button>
+  </form>
+</div>
+{% endblock %}

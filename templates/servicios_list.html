@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <div class="top">
+    <h2>Servicios</h2>
+    <a class="btn" href="{{ url_for('servicios_nuevo') }}">Nuevo</a>
+  </div>
+  <table>
+    <tr><th>ID</th><th>Nombre</th><th>Técnico</th><th>Costo</th><th>Tiempo</th><th>Acciones</th></tr>
+    {% for s in servicios %}
+    <tr>
+      <td>{{ s.id }}</td>
+      <td>{{ s.nombre }}</td>
+      <td>{{ s.tecnico_asignado }}</td>
+      <td>{{ s.costo }}</td>
+      <td>{{ s.tiempo_estimado }}</td>
+      <td>
+        <a href="{{ url_for('servicios_editar', id=s.id) }}">Editar</a> |
+        <a href="{{ url_for('servicios_eliminar', id=s.id) }}" onclick="return confirm('¿Eliminar?')">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+  <div class="top">
+    <h2>Proveedores</h2>
+    <a class="btn" href="{{ url_for('proveedores_nuevo') }}">Nuevo</a>
+  </div>
+  <table>
+    <tr><th>ID</th><th>Empresa</th><th>Contacto</th><th>Teléfono</th><th>Acciones</th></tr>
+    {% for p in proveedores %}
+    <tr>
+      <td>{{ p.id }}</td>
+      <td>{{ p.empresa }}</td>
+      <td>{{ p.contacto }}</td>
+      <td>{{ p.telefono }}</td>
+      <td>
+        <a href="{{ url_for('proveedores_editar', id=p.id) }}">Editar</a> |
+        <a href="{{ url_for('proveedores_eliminar', id=p.id) }}" onclick="return confirm('¿Eliminar?')">Eliminar</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

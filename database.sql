@@ -1,0 +1,50 @@
+
+CREATE DATABASE IF NOT EXISTS abc_tech DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE abc_tech;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(200) NOT NULL,
+  creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS clientes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  correo VARCHAR(100),
+  telefono VARCHAR(20),
+  direccion VARCHAR(150),
+  historial_compras TEXT
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS proveedores (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  empresa VARCHAR(120) NOT NULL,
+  contacto VARCHAR(100),
+  telefono VARCHAR(20),
+  productos TEXT
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS productos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  codigo VARCHAR(50) NOT NULL UNIQUE,
+  descripcion VARCHAR(200),
+  precio DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  stock INT NOT NULL DEFAULT 0,
+  proveedor_id INT,
+  CONSTRAINT fk_prod_prov FOREIGN KEY (proveedor_id)
+    REFERENCES proveedores(id)
+    ON UPDATE CASCADE ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS servicios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL,
+  tecnico_asignado VARCHAR(100),
+  costo DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+  tiempo_estimado VARCHAR(50)
+) ENGINE=InnoDB;
+
+INSERT INTO usuarios (nombre, email, password) VALUES ('Admin', 'admin@abc.com', 'admin123');

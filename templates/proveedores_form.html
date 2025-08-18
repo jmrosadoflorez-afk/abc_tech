@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card small">
+  <h2>{{ "Editar" if data else "Nuevo" }} proveedor</h2>
+  <form method="post">
+    <label>Empresa</label>
+    <input name="empresa" value="{{ data.empresa if data }}" required>
+    <label>Contacto</label>
+    <input name="contacto" value="{{ data.contacto if data }}">
+    <label>Teléfono</label>
+    <input name="telefono" value="{{ data.telefono if data }}">
+    <label>Productos</label>
+    <textarea name="productos">{{ data.productos if data }}</textarea>
+    <button type="submit">Guardar</button>
+  </form>
+</div>
+{% endblock %}

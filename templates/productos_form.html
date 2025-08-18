@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="card small">
+  <h2>{{ "Editar" if data else "Nuevo" }} producto</h2>
+  <form method="post">
+    <label>Código</label>
+    <input name="codigo" value="{{ data.codigo if data }}" required>
+    <label>Descripción</label>
+    <input name="descripcion" value="{{ data.descripcion if data }}">
+    <label>Precio</label>
+    <input name="precio" type="number" step="0.01" value="{{ data.precio if data }}">
+    <label>Stock</label>
+    <input name="stock" type="number" value="{{ data.stock if data }}">
+    <label>Proveedor</label>
+    <select name="proveedor_id">
+      <option value="">(sin proveedor)</option>
+      {% for pr in proveedores %}
+        <option value="{{ pr.id }}" {% if data and data.proveedor_id==pr.id %}selected{% endif %}>{{ pr.empresa }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Guardar</button>
+  </form>
+</div>
+{% endblock %}
