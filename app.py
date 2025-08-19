@@ -5,12 +5,16 @@ import mysql.connector
 app = Flask(__name__)
 app.secret_key = "clave_secreta_simple"
 
+import os
+
 DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "",
-    "database": "abc_tech"
+    'host': os.environ.get('MYSQLHOST'),
+    'user': os.environ.get('MYSQLUSER'),
+    'password': os.environ.get('MYSQLPASSWORD'),
+    'database': os.environ.get('MYSQLDATABASE'),
+    'port': os.environ.get('MYSQLPORT')
 }
+
 
 def get_db():
     return mysql.connector.connect(**DB_CONFIG)
